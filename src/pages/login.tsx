@@ -1,5 +1,8 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { HiOutlineMail } from "react-icons/hi"; 
+import { MdOutlinePassword } from "react-icons/md";
+import Image from "next/image";
 
 const RECAPTCHA_SITE_KEY = 'site-key'; // Replace with your actual reCAPTCHA site key
 
@@ -34,7 +37,7 @@ const Login: React.FC = () => {
     event.preventDefault();
 
     // Validate input fields
-    if (!formData.email || !formData.password ) {
+    if (!formData.email || !formData.password) {
       console.error('All fields are required.');
       return;
     }
@@ -65,8 +68,14 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="absolute top-4 left-4 text-black text-3xl">
-        <img src="/logo.png" alt="Logo" className="h-8 w-8" />
+      <div className="absolute top-4 left-4 text-black">
+        <Image
+          src="/Pintel_Light.svg"
+          alt="Logo"
+          width={150} 
+          height={150}
+          priority
+        />
       </div>
       <div className="w-full max-w-md px-8 space-y-8">
         <div className="text-center pb-11">
@@ -80,10 +89,8 @@ const Login: React.FC = () => {
                 E-mail*
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                  <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2.94 6.94a1 1 0 011.32-.08l.1.08 5.54 5.53 5.54-5.53a1 1 0 011.5 1.32l-.08.1-6.25 6.25a1 1 0 01-1.32.08l-.1-.08-6.25-6.25a1 1 0 010-1.42z" />
-                  </svg>
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center z-20">
+                  <HiOutlineMail className="h-5 w-5 text-gray-600" />
                 </span>
                 <input
                   id="email-address"
@@ -93,8 +100,8 @@ const Login: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-100 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder='E-mail'
+                  className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-100 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-gray-200 focus:border-gray-300 focus:z-10 sm:text-sm shadow-sm"
+                  placeholder="E-mail"
                 />
               </div>
             </div>
@@ -103,10 +110,8 @@ const Login: React.FC = () => {
                 Password*
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                  <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 2a4 4 0 014 4v4h1.5a1.5 1.5 0 110 3H4.5a1.5 1.5 0 110-3H6V6a4 4 0 014-4zm1 6V6a1 1 0 10-2 0v2h2z" clipRule="evenodd" />
-                  </svg>
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center z-20">
+                  <MdOutlinePassword className="h-5 w-5 text-gray-600" />
                 </span>
                 <input
                   id="password"
@@ -116,16 +121,13 @@ const Login: React.FC = () => {
                   required
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-100 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder='Password'
+                  className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-100 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-gray-200 focus:border-gray-300 focus:z-10 sm:text-sm shadow-sm"
+                  placeholder="Password"
                 />
               </div>
             </div>
           </div>
-          <ReCAPTCHA
-            sitekey={RECAPTCHA_SITE_KEY}
-            onChange={handleRecaptchaChange}
-          />
+          <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleRecaptchaChange} />
           <div>
             <button
               type="submit"
